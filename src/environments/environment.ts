@@ -1,10 +1,24 @@
+import { firebaseConfig } from './firebase.config';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// Please getting this data from Firebase console
+// export const firebaseConfig: Record<string, string> = {
+//   apiKey: 'XXXXXX',
+//   authDomain: 'XXXXXX.firebaseapp.com',
+//   databaseURL: 'https://XXXXXX.firebaseio.com',
+//   projectId: 'XXXXXX',
+//   storageBucket: 'XXXXXX.appspot.com',
+//   messagingSenderId: 'XXXXXX',
+//   appId: 'XXXXXX'
+// };
+
 export const environment = {
-  production: false
-};
+         production: false,
+         firebaseConfig
+       };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
