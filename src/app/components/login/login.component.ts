@@ -1,3 +1,4 @@
+import { LoginModel } from './../../models/login.model';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
-
+  user: LoginModel = new LoginModel();
   constructor(
     private router: Router
   ) { }
