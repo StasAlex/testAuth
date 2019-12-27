@@ -1,9 +1,7 @@
-import { LoginModel } from './../../models/login.model';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { LoginService } from './../../services/login.service';
+import { Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-
-
+import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +12,13 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class HomeComponent implements OnInit {
   loginForm: FormGroup;
   control = new FormControl('', Validators.required);
+  angularFireAuth: any;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
+              private loginService: LoginService) {
+              }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -38,11 +41,27 @@ export class HomeComponent implements OnInit {
     return result;
   }
 
-  onEmailLogin(): void {
-    this.router.navigate(['/login']);
-  }
-
   public clearFormFields() {
     this.loginForm.reset();
   }
+
+  // login({ email, password }: LoginModel): Observable<UserFirebaseDto> {
+  //   return from(
+  //     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
+  //   ).pipe(pluck('user'));
+  // }
+
+  // tslint:disable-next-line: adjacent-overload-signatures
+  onEmailLogin(users): void {
+    const user = this.loginForm.value;
+
+    if (this.loginForm.valid) {
+      // console.log(user);
+      this.loginService.getUsers().push(user);
+      users = this.loginService.getUsers();
+      console.log(users);
+      this.router.navigateByUrl('login');
+    }
+  }
+
 }

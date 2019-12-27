@@ -1,4 +1,4 @@
-import { LoginModel } from './../../models/login.model';
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,15 +9,21 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
-  user: LoginModel = new LoginModel();
+
+users: any[];
+
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private loginService: LoginService) {
+      this.users = this.loginService.getUsers();
+     }
+
 
   ngOnInit(): void {
   }
 
   logout(): void {
     this.router.navigate(['/home']);
+    this.users = [];
   }
 }
