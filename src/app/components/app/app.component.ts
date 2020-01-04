@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title: string = 'testAuth';
+export class AppComponent implements OnInit {
+  title: 'TestAuth';
+  constructor(private afAuth: AngularFireAuth) {}
+
+  ngOnInit(): void {}
 }

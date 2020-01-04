@@ -24,6 +24,6 @@ users: any[];
 
   logout(): void {
     this.router.navigate(['/home']);
-    this.users = [];
+    console.log(this.users);
   }
 }

@@ -1,15 +1,23 @@
 <div class="container">
   <form [formGroup]="loginForm" (ngSubmit)="onEmailLogin()">
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="username">Username</label>
       <input type="username" class="form-control" id="username" formControlName="username" placeholder="Enter username">
       <div class="alert alert-danger" role="alert" *ngIf="isValid('username')">
         Add right username
       </div>
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="login">Email address</label>
-      <input type="email" class="form-control" id="login" formControlName="email" placeholder="Enter email">
+      <input type="email"
+        class="form-control"
+        [class.is-invalid]="loginForm.get('email').invalid && (loginForm.get('email').dirty
+        ||loginForm.get('email').touched )"
+        [class.is-valid]="loginForm.get('email').valid"
+        id="login"
+        formControlName="email"
+        placeholder="Enter email">
+        <div class="invalid-feedback">Error!</div>
       <small id="emailHelp" class="form-text text-muted">
         We'll never share your email with anyone else.
       </small>
@@ -24,8 +32,20 @@
     <div class="alert alert-danger" role="alert" *ngIf="isValid('password')">
       Add right password (lenght must be between 6 and 30 characters)
     </div>
-    <button type="submit" class="btn btn-primary" (click)="onEmailLogin()" [disabled]="!loginForm.valid">Login</button>
-    <button type="button" class="btn btn-light ml-3" (click)="clearFormFields()">Clear</button>
+<!-- {{loginForm.valid | json}}
+{{loginForm.get('email').errors | json}}
+{{loginForm.get('password').errors | json}}
+{{loginForm.get('username').errors | json}}
+{{loginForm.get('email').invalid}} -->
+
+
+
+    <button type="submit" class="btn btn-primary"
+    [disabled]="!loginForm.valid"
+    >Login</button>
+    <button type="button" class="btn btn-light ml-3"
+      (click)="clearFormFields()"
+     >Clear</button>
 
   </form>
 </div>
