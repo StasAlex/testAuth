@@ -29,14 +29,6 @@ export class HomeComponent implements OnInit {
         [Validators.required, Validators.minLength(6), Validators.maxLength(30)]
       ]
     });
-    this.loginService.getUser()
-      .pipe(
-        tap((user: User) => {
-          if (user) {
-            this.router.navigate(['/login']);
-          }
-        })
-      ).subscribe();
   }
 
   onEmailLogin() {

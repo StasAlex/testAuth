@@ -22,15 +22,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user$ = this.loginService.getUser()
-    .pipe(
-      tap((user: User) => {
-        if (!user) {
-          this.router.navigate(['/home']);
-        }
-      })
-    );
-
+    this.user$ = this.loginService.getUser();
   }
 
   logout(): void {

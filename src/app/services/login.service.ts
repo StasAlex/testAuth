@@ -28,4 +28,8 @@ export class LoginService {
     return from (this.afAuth.auth.signOut());
   }
 
+  isAuthenticated(){
+    
+  }
+
 }
