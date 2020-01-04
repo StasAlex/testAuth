@@ -1,6 +1,9 @@
 import { LoginService } from './../../services/login.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'firebase';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +13,32 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-users: any[];
+  user$: Observable<User>;
 
   constructor(
     private router: Router,
-    private loginService: LoginService) {
-      this.users = this.loginService.getUsers();
-     }
+    private loginService: LoginService
+    ) {}
 
 
   ngOnInit(): void {
+    this.user$ = this.loginService.getUser()
+    .pipe(
+      tap((user: User) => {
+        if (!user) {
+          this.router.navigate(['/home']);
+        }
+      })
+    );
+
   }
 
   logout(): void {
-    this.router.navigate(['/home']);
-    console.log(this.users);
+    this.loginService.logOut().subscribe(
+      () => {
+        this.router.navigate(['/home']);
+      }
+    );
+
   }
 }

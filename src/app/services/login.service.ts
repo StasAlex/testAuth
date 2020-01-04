@@ -12,8 +12,8 @@ export class LoginService {
   constructor(private afAuth: AngularFireAuth
               ) {}
 
-  public getUsers() {
-    return null;
+  getUser(): Observable<User> {
+    return this.afAuth.user;
   }
 
   loginUser(email, password): Observable<User> {
@@ -22,8 +22,10 @@ export class LoginService {
     .pipe(
       pluck('user'),
     );
-    // .subscribe((data) => { console.log(data);});
+  }
 
+  logOut(): Observable<void> {
+    return from (this.afAuth.auth.signOut());
   }
 
 }
