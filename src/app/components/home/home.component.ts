@@ -1,10 +1,7 @@
 import { LoginService } from './../../services/login.service';
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { User } from 'firebase';
-import { tap } from 'rxjs/operators';
-
+import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

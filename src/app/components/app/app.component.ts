@@ -1,4 +1,3 @@
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 
@@ -10,7 +9,10 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title: 'TestAuth';
-  constructor() {}
+  constructor(
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }
