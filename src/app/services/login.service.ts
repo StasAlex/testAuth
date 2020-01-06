@@ -3,33 +3,46 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { User } from 'firebase';
+import { auth } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private afAuth: AngularFireAuth
-              ) {}
+  constructor(private afAuth: AngularFireAuth,
+              ) {
+              }
 
   getUser(): Observable<User> {
     return this.afAuth.user;
   }
 
   loginUser(email, password): Observable<User> {
-    console.log('Login with email and password!');
     return from(this.afAuth.auth.signInWithEmailAndPassword(email, password))
     .pipe(
       pluck('user'),
     );
   }
 
-  logOut(): Observable<void> {
-    return from (this.afAuth.auth.signOut());
+  loginWithGoogle() {
+    const provider = new auth.GoogleAuthProvider();
+    return from(this.afAuth.auth.signInWithPopup(provider))
+      .pipe(
+        pluck('user'),
+      );
   }
 
-  isAuthenticated(){
-    
+  loginWithFb() {
+    const provider = new auth.FacebookAuthProvider();
+    return from(this.afAuth.auth.signInWithPopup(provider))
+      .pipe(
+        pluck('user'),
+      );
+  }
+
+  logOut(): Observable<void> {
+    return from (this.afAuth.auth.signOut());
   }
 
 }

@@ -10,7 +10,7 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title: 'TestAuth';
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

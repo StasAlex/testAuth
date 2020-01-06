@@ -38,6 +38,20 @@ export class HomeComponent implements OnInit {
       ({ message }) => { alert(message); }
     );
   }
+  loginWithGoogle() {
+    this.loginService.loginWithGoogle()
+      .subscribe(
+        () => { this.router.navigateByUrl('/login'); },
+        ({ message }) => { alert(message); }
+      );
+  }
+  loginWithFacebook() {
+    this.loginService.loginWithFb()
+      .subscribe(
+        () => { this.router.navigateByUrl('/login'); },
+        ({ message }) => { alert(message); }
+      );
+  }
   clearFormFields() {
     this.loginForm.reset();
   }

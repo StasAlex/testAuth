@@ -24,7 +24,12 @@
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+      <input type="password"
+      class="form-control"
+      id="password"
+      formControlName="password"
+      placeholder="Password">
+      <div class="invalid-feedback">Error!</div>
     </div>
 <!-- {{loginForm.valid | json}}
 {{loginForm.get('email').errors | json}}
@@ -37,9 +42,12 @@
     <button type="submit" class="btn btn-primary"
     [disabled]="!loginForm.valid"
     >Login</button>
+    <button type="button" class="btn btn-primary ml-3" (click)="loginWithGoogle()">Login With Google</button>
+    <button type="button" class="btn btn-primary ml-3" (click)="loginWithFacebook()">Login With Facebook</button>
     <button type="button" class="btn btn-light ml-3"
       (click)="clearFormFields()"
      >Clear</button>
 
   </form>
+
 </div>
